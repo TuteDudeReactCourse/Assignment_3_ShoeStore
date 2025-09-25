@@ -105,7 +105,7 @@ const MainPage = ({
     
     <div className="flex flex-col gap-4">
       <p className="font-semibold text-xl">Featured Shoes</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {shoesdata.map((shoeitem) => (
           <ShoeCard 
             shoesdata={shoesdata} 
