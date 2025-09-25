@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ShoeCard from "./ShoeCard";
 import ShoppingCart from "./ShoppingCart";
 
@@ -60,6 +60,8 @@ const MainPage = ({
     },
   ];
 
+  const [shoesdata,setShoesdata] = useState(shoes)
+
   const handleAddToCart = (shoeitem) => {
     shoeitem.cartQuantity = shoeitem.cartQuantity + 1;
     setCartitems((prevItems) => [...prevItems, shoeitem]);
@@ -83,8 +85,8 @@ const MainPage = ({
             <p className="font-semibold text-xl">Featured Shoes</p>
           </div>
           <div className="grid grid-cols-3 gap-4">
-            {shoes.map((shoeitem) => (
-              <ShoeCard
+            {shoesdata.map((shoeitem) => (
+              <ShoeCard shoesdata={shoesdata} setShoesdata= {setShoesdata}
                 theme={theme}
                 shoeitem={shoeitem}
                 key={shoeitem.id}
@@ -103,7 +105,7 @@ const MainPage = ({
           !iscartopen ? "hidden" : "col-span-1"
         }`}
       >
-        <ShoppingCart
+        <ShoppingCart shoesdata={shoesdata} setShoesdata= {setShoesdata}
         theme={theme}
           cartitems={cartitems}
           setCartitems={setCartitems}

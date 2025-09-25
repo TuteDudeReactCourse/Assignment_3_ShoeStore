@@ -1,30 +1,51 @@
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { MdDeleteOutline } from "react-icons/md";
 
-const ShoppingCart = ({ cartitems, setCartitems, handlecartopen,theme }) => {
-  const handleaddbtn = (cartitemindex) => {
+const ShoppingCart = ({shoesdata,setShoesdata,cartitems, setCartitems, handlecartopen,theme }) => {
+  const handleaddbtn = (cartitemid) => {
     setCartitems(() =>
-      cartitems.map((item, index) =>
-        index == cartitemindex
+      cartitems.map((item) =>
+        item.id == cartitemid
+          ? { ...item, cartQuantity: item.cartQuantity + 1 }
+          : item
+      )
+    );
+    setShoesdata(() =>
+       shoesdata.map((item) =>
+        item.id == cartitemid
           ? { ...item, cartQuantity: item.cartQuantity + 1 }
           : item
       )
     );
   };
 
-  const handleremovebtn = (cartitemindex) => {
+  const handleremovebtn = (cartitemid) => {
     setCartitems(() =>
-      cartitems.map((item, index) =>
-        (index == cartitemindex) & (item.cartQuantity > 0)
+      cartitems.map((item) =>
+        (item.id == cartitemid) & (item.cartQuantity > 0)
+          ? { ...item, cartQuantity: item.cartQuantity - 1 }
+          : item
+      )
+    );
+    setShoesdata(() =>
+      shoesdata.map((item, index) =>
+        index.id == cartitemid
           ? { ...item, cartQuantity: item.cartQuantity - 1 }
           : item
       )
     );
   };
 
-  const handledeletebtn = (cartitemindex) => {
+  const handledeletebtn = (cartitemid) => {
     setCartitems(() =>
-      cartitems.filter((item, index) => index !== cartitemindex)
+      cartitems.filter((item) => item.id !== cartitemid)
+    );
+     setShoesdata(() =>
+      shoesdata.map((item) =>
+        item.id == cartitemid
+          ? { ...item, cartQuantity: 0 }
+          : item
+      )
     );
   };
 
@@ -43,7 +64,7 @@ const ShoppingCart = ({ cartitems, setCartitems, handlecartopen,theme }) => {
           </button>
         </div>
         <div className="mt-5 flex flex-col gap-2">
-          {cartitems.length > 0 ? (cartitems.map((item, index) => (
+          {cartitems.length > 0 ? (cartitems.map((item, index) => ( item.cartQuantity >0 &&
             <div
               key={index}
               className={`shopigncartitems w-full ${theme ? "bg-white":"bg-gray-500 "} shadow-lg h-20 rounded-md flex gap-3 items-center p-2`}
@@ -61,20 +82,20 @@ const ShoppingCart = ({ cartitems, setCartitems, handlecartopen,theme }) => {
               </div>
               <div className="flex gap-1 ml-4 items-center">
                 <button
-                  onClick={() => handleremovebtn(index)}
+                  onClick={() => handleremovebtn(item.id)}
                   className="bg-blue-500 text-white px-3 py-1 cursor-pointer"
                 >
                   -
                 </button>
                 <p className="bg-gray-500 px-3 py-1">{item.cartQuantity}</p>
                 <button
-                  onClick={() => handleaddbtn(index)}
+                  onClick={() => handleaddbtn(item.id)}
                   className="bg-blue-500 text-white px-3 py-1 cursor-pointer"
                 >
                   +
                 </button>
                 <button
-                  onClick={() => handledeletebtn(index)}
+                  onClick={() => handledeletebtn(item.id)}
                   className="text-red-500 text-xl ml-2 cursor-pointer"
                 >
                   <MdDeleteOutline />

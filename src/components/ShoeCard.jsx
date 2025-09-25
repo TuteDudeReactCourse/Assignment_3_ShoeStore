@@ -1,6 +1,6 @@
 import React from "react";
 
-const ShoeCard = ({ shoeitem, theme, handleAddToCart }) => {
+const ShoeCard = ({shoeitem, theme, handleAddToCart }) => {
   return (
     <>
       <div
@@ -31,10 +31,10 @@ const ShoeCard = ({ shoeitem, theme, handleAddToCart }) => {
 
           <div>
             <button
-              onClick={() => handleAddToCart(shoeitem)}
-              className="bg-[#161e2e] text-white w-full px-20 py-2 rounded-md cursor-pointer"
+              onClick={() => {shoeitem.cartQuantity == 0 ? handleAddToCart(shoeitem) :alert("item added already")}}
+              className={`${shoeitem.cartQuantity == 0 ? "bg-[#161e2e]" : "bg-green-500 cursor-not-allowed"} text-white w-full px-20 py-2 rounded-md `}
             >
-              {shoeitem.cartQuantity == 0 ? "Add To Cart" : "Remove From Cart"}
+              {shoeitem.cartQuantity == 0 ? "Add To Cart" : "Added to cart"}
             </button>
           </div>
         </div>
