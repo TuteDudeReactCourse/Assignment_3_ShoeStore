@@ -8,7 +8,7 @@ const Navbar = ({
   setTheme,
  
   handlecartopen,
-  cartlength
+  
 }) => {
   
 
@@ -30,7 +30,7 @@ const Navbar = ({
           <button onClick={handlecartopen} className="cursor-pointer">
             <FaShoppingCart />
           </button>
-          <h1 className="text-lg">{cartlength}</h1>
+         
         </div>
         <div>
           <button onClick={() => setTheme(!theme)} className="cursor-pointer">

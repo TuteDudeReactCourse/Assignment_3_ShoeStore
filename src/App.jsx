@@ -8,7 +8,7 @@ const App = () => {
 
   const [cartitems, setCartitems] = useState([]);
 
-  const cartlength = cartitems.length;
+
 
   const [iscartopen, setIsCartOpen] = useState(true);
 
@@ -27,7 +27,7 @@ const App = () => {
         handlecartopen={handlecartopen}
         theme={theme}
         setTheme={setTheme}
-        cartlength={cartlength}
+        
       />
       <MainPage
       cartitems={cartitems}
