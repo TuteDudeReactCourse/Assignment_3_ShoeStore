@@ -44,7 +44,7 @@ const ShoppingCart = ({ shoesdata, setShoesdata, cartitems, setCartitems, handle
   );
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 h-full ">
       <div className="flex justify-between items-center text-xl font-semibold">
         <h1>Shopping Cart</h1>
         <button onClick={handlecartopen} className="text-2xl">
@@ -52,7 +52,7 @@ const ShoppingCart = ({ shoesdata, setShoesdata, cartitems, setCartitems, handle
         </button>
       </div>
 
-      <div className="flex flex-col gap-2 overflow-y-auto max-h-48 sm:max-h-64 md:max-h-full">
+      <div className="flex flex-col flex-1 gap-2 overflow-y-auto max-h-48 sm:max-h-64 md:max-h-full">
         {cartitems.length > 0 ? cartitems.map((item, index) => (
           item.cartQuantity > 0 && (
             <div
